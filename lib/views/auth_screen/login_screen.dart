@@ -1,4 +1,7 @@
+import 'package:get/get.dart';
 import 'package:online_bazar_seller/const/const.dart';
+import 'package:online_bazar_seller/views/home_screen/home.dart';
+import 'package:online_bazar_seller/views/widgets/our_button.dart';
 import 'package:online_bazar_seller/views/widgets/text_style.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -34,10 +37,62 @@ class LoginScreen extends StatelessWidget {
                 boldtext(text: appname, size: 20.0)
               ],
             ),
-            20.heightBox,
+            60.heightBox,
             Column(
-              children: [TextFormField()],
-            ).box.white.outerShadowMd.padding(const EdgeInsets.all(8)).make()
+              children: [
+                TextFormField(
+                  decoration: const InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.email,
+                        color: purpleColor,
+                      ),
+                      border: InputBorder.none,
+                      hintText: "Enter Email"),
+                ),
+                10.heightBox,
+                TextFormField(
+                  decoration: const InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.lock,
+                        color: purpleColor,
+                      ),
+                      border: InputBorder.none,
+                      hintText: "*********"),
+                ),
+                10.heightBox,
+                Align(
+                  alignment: Alignment.center,
+                  child: TextButton(
+                      onPressed: () {},
+                      child: normalText(
+                          text: "Forgot Password?", color: purpleColor)),
+                ),
+                5.heightBox,
+                SizedBox(
+                    width: context.screenWidth - 100,
+                    child: ourButton(
+                        title: "Login",
+                        onPress: () {
+                          Get.to(() => Home());
+                        })),
+                10.heightBox,
+              ],
+            )
+                .box
+                .white
+                .roundedSM
+                .outerShadowMd
+                .padding(const EdgeInsets.all(8))
+                .make(),
+            10.heightBox,
+            Center(
+              child: normalText(
+                  color: lightGrey,
+                  text: "In case of any difficulty, contact administrator"),
+            ),
+            const Spacer(),
+            Center(child: boldtext(text: credit)),
+            10.heightBox
           ]),
         ),
       ),
