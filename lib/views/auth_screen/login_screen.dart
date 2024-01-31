@@ -10,6 +10,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: purpleColor,
       body: SafeArea(
         child: Padding(
@@ -73,7 +74,7 @@ class LoginScreen extends StatelessWidget {
                     child: ourButton(
                         title: "Login",
                         onPress: () {
-                          Get.to(() => Home());
+                          Get.to(() => const Home());
                         })),
                 10.heightBox,
               ],
