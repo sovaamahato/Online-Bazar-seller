@@ -1,4 +1,6 @@
+import 'package:get/get.dart';
 import 'package:online_bazar_seller/const/const.dart';
+import 'package:online_bazar_seller/views/order_screen/order_details.dart';
 import 'package:online_bazar_seller/views/widgets/appbar_widget.dart';
 
 import '../widgets/text_style.dart';
@@ -19,7 +21,9 @@ class OrderScreen extends StatelessWidget {
               children: List.generate(
             20,
             (index) => ListTile(
-              onTap: () {},
+              onTap: () {
+                Get.to(() => OrderDetails());
+              },
               tileColor: textfieldGrey,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12)),
