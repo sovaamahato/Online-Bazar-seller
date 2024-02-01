@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
           title: boldtext(text: "Dashboard", color: darkGrey, size: 16.0)),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(children: [
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -46,6 +46,25 @@ class HomeScreen extends StatelessWidget {
           10.heightBox,
           const Divider(),
           10.heightBox,
+          boldtext(text: 'popular products', color: fontGrey, size: 16.0),
+          20.heightBox,
+          ListView(
+            physics: const BouncingScrollPhysics(),
+            shrinkWrap: true,
+            children: List.generate(
+              3,
+              (index) => ListTile(
+                onTap: () {},
+                title: boldtext(text: "Product title", color: fontGrey),
+                subtitle: normalText(text: 'Rs.30000', color: darkGrey),
+                leading: Image.asset(
+                  imgProduct,
+                  width: 100,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
         ]),
       ),
     );
