@@ -1,7 +1,10 @@
 import 'package:online_bazar_seller/const/const.dart';
 import 'package:online_bazar_seller/views/widgets/dashboard_button.dart';
 import 'package:online_bazar_seller/views/widgets/text_style.dart';
+// ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart' as intl;
+
+import '../widgets/appbar_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -9,18 +12,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          automaticallyImplyLeading: false,
-          actions: [
-            Center(
-              child: normalText(
-                  text: intl.DateFormat('EEE, MMM d, ' 'yy')
-                      .format(DateTime.now()),
-                  color: purpleColor),
-            ),
-            10.widthBox,
-          ],
-          title: boldtext(text: "Dashboard", color: darkGrey, size: 16.0)),
+      appBar: appBarWidget("dashBoard"),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
