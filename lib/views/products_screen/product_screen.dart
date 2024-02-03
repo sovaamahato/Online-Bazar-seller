@@ -36,7 +36,11 @@ class ProductScreen extends StatelessWidget {
                   Get.to(() => const ProductDetails());
                 },
                 title: boldtext(text: "Product title", color: fontGrey),
-                subtitle: normalText(text: 'Rs.30000', color: darkGrey),
+                subtitle: Row(children: [
+                  normalText(text: 'Rs.30000', color: darkGrey),
+                  10.widthBox,
+                  boldtext(text: "Featured", color: green)
+                ]),
                 leading: Image.asset(
                   imgProduct,
                   width: 100,

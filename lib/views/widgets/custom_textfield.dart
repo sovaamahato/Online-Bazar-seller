@@ -8,18 +8,20 @@ Widget customTextField({label, controller, hint, isDesc = false}) {
       maxLines: isDesc ? 4 : 1,
       decoration: InputDecoration(
         isDense: true,
-        label: normalText(text: label),
+        label: normalText(
+          text: label,
+        ),
         hintText: hint,
-        hintStyle: TextStyle(color: lightGrey),
+        hintStyle: const TextStyle(color: fontGrey),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(
+          borderSide: const BorderSide(
             color: white,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(
+          borderSide: const BorderSide(
             color: white,
           ),
         ),
