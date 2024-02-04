@@ -1,7 +1,9 @@
 import 'package:online_bazar_seller/const/const.dart';
 
-Widget loadingIndicator() {
-  return const CircularProgressIndicator(
-    valueColor: AlwaysStoppedAnimation(purpleColor),
+Widget loadingIndicator({circleColor = purpleColor}) {
+  return Center(
+    child: CircularProgressIndicator(
+      valueColor: AlwaysStoppedAnimation(circleColor),
+    ),
   );
 }
