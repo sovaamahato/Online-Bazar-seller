@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 import 'package:online_bazar_seller/const/const.dart';
+import 'package:online_bazar_seller/controller/auth_controller.dart';
+import 'package:online_bazar_seller/views/auth_screen/login_screen.dart';
 import 'package:online_bazar_seller/views/messages_screen/messages.dart';
 import 'package:online_bazar_seller/views/profile_screen/edit_profile_screen.dart';
 import 'package:online_bazar_seller/views/shop_settings/shop_settings.dart';
@@ -21,7 +23,13 @@ class ProfileScreen extends StatelessWidget {
                 Get.to(() => EditProfileScreen());
               },
               icon: const Icon(Icons.edit)),
-          TextButton(onPressed: () {}, child: normalText(text: "logout")),
+          TextButton(
+              onPressed: () async {
+                await Get.find<AuthController>().signoutmethod(context);
+                Get.offAll(() => const LoginScreen());
+                print("clickkkkkkkkkkkkkkkkkkkkkkkkked");
+              },
+              child: normalText(text: "logout")),
         ],
       ),
       body: Column(children: [
