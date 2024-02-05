@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:online_bazar_seller/const/const.dart';
+import 'package:online_bazar_seller/controller/products_controller.dart';
 import 'package:online_bazar_seller/views/products_screen/components/product_dropdown.dart';
 import 'package:online_bazar_seller/views/products_screen/components/product_images.dart';
 import 'package:online_bazar_seller/views/widgets/custom_textfield.dart';
@@ -10,6 +11,7 @@ class AddProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.find<ProductsController>();
     return Scaffold(
       backgroundColor: purpleColor,
       appBar: AppBar(
@@ -42,28 +44,30 @@ class AddProduct extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               customTextField(
-                hint: "eg. BMW",
-                label: "Product Name",
-              ),
+                  hint: "eg. BMW",
+                  label: "Product Name",
+                  controller: controller.pnameController),
               customTextField(
-                hint: "eg. good product",
-                label: "Description",
-                isDesc: true,
-              ),
+                  hint: "eg. good product",
+                  label: "Description",
+                  isDesc: true,
+                  controller: controller.pdesController),
               customTextField(
-                hint: "eg. 100",
-                label: "Price",
-              ),
+                  hint: "eg. 100",
+                  label: "Price",
+                  controller: controller.ppriceController),
               customTextField(
-                hint: "eg. 20",
-                label: "Quantity",
-              ),
+                  hint: "eg. 20",
+                  label: "Quantity",
+                  controller: controller.pquantityController),
 
-              //dropdowns-----
+              //-----------------dropdowns----------------
               10.heightBox,
-              productDropdown(),
+              productDropdown("category", controller.categoryList,
+                  controller.categoryvalue, controller),
               10.heightBox,
-              productDropdown(),
+              productDropdown("Sub category", controller.subcategoryList,
+                  controller.subcategoryvalue, controller),
 
               10.heightBox,
               const Divider(),
@@ -71,15 +75,25 @@ class AddProduct extends StatelessWidget {
                 text: "Choose product images",
               ),
 
-              //imagesss-------
+              //----------------------imagesss-------
               10.heightBox,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: List.generate(
-                    3,
-                    (index) => productImages(
-                          label: "${index + 1}",
-                        )),
+              Obx(
+                () => Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: List.generate(
+                      3,
+                      (index) => controller.pImagesList[index] != null
+                          ? Image.file(
+                              controller.pImagesList[index],
+                              width: 100,
+                              height: 100,
+                            ).onTap(() {
+                              controller.pickImage(index, context);
+                            })
+                          : productImages(label: "${index + 1}").onTap(() {
+                              controller.pickImage(index, context);
+                            })),
+                ),
               ),
 
               5.heightBox,
@@ -92,25 +106,32 @@ class AddProduct extends StatelessWidget {
                 text: "Choose product Colors",
               ),
               10.heightBox,
-              Wrap(
-                spacing: 7.0,
-                runSpacing: 8.0,
-                children: List.generate(
-                    9,
-                    (index) => Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            VxBox()
-                                .color(Vx.randomPrimaryColor)
-                                .roundedFull
-                                .size(50, 50)
-                                .make(),
-                            const Icon(
-                              Icons.done,
-                              color: white,
-                            )
-                          ],
-                        )),
+              Obx(
+                () => Wrap(
+                  spacing: 7.0,
+                  runSpacing: 8.0,
+                  children: List.generate(
+                      9,
+                      (index) => Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              VxBox()
+                                  .color(Vx.randomPrimaryColor)
+                                  .roundedFull
+                                  .size(50, 50)
+                                  .make()
+                                  .onTap(() {
+                                controller.seletedColorIndex.value = index;
+                              }),
+                              controller.seletedColorIndex.value == index
+                                  ? const Icon(
+                                      Icons.done,
+                                      color: white,
+                                    )
+                                  : SizedBox()
+                            ],
+                          )),
+                ),
               )
             ],
           ),
