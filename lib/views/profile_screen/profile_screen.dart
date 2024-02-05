@@ -25,7 +25,9 @@ class ProfileScreen extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                Get.to(() => const EditProfileScreen());
+                Get.to(() => EditProfileScreen(
+                      username: controller.snapshotData['vendor_name'],
+                    ));
               },
               icon: const Icon(Icons.edit)),
           TextButton(

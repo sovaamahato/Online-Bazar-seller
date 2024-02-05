@@ -1,10 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 import 'package:online_bazar_seller/const/const.dart';
 
 import 'views/auth_screen/login_screen.dart';
+import 'views/home_screen/home.dart';
 import 'views/home_screen/home_screen.dart';
 
 Future<void> main() async {
@@ -57,7 +58,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
           appBarTheme: const AppBarTheme(
               backgroundColor: Colors.transparent, elevation: 0)),
-      home: isLoggedin ? const HomeScreen() : const LoginScreen(),
+      home: isLoggedin ? const Home() : const LoginScreen(),
     );
   }
 }

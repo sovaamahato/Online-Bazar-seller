@@ -5,6 +5,7 @@ Widget customTextField({label, controller, hint, isDesc = false}) {
   return Padding(
     padding: const EdgeInsets.all(3.0),
     child: TextFormField(
+      style: const TextStyle(color: white),
       maxLines: isDesc ? 4 : 1,
       decoration: InputDecoration(
         isDense: true,

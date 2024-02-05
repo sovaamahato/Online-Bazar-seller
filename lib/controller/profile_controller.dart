@@ -31,21 +31,21 @@ class ProfileController extends GetxController {
     }
   }
 
-  uploadProfileImage() async {
-    var filename = basename(profileImgPath.value);
-    var destination = "images/${currentUser!.uid}/$filename";
-    Reference ref = FirebaseStorage.instance.ref().child(destination);
-    await ref.putFile(File(profileImgPath.value));
-    profileimageLink = await ref.getDownloadURL();
-  }
+  // uploadProfileImage() async {
+  //   var filename = basename(profileImgPath.value);
+  //   var destination = "images/${currentUser!.uid}/$filename";
+  //   Reference ref = FirebaseStorage.instance.ref().child(destination);
+  //   await ref.putFile(File(profileImgPath.value));
+  //   profileimageLink = await ref.getDownloadURL();
+  // }
 
-  updateProfile(name, password, imageUrl) async {
+  updateProfile({name, password, imageUrl}) async {
     var store = firestore.collection(vendorsCollection).doc(currentUser!.uid);
 
     await store.set({
-      'name': name,
+      'vendor_name': name,
       'password': password,
-      'imgurl': imageUrl,
+      'imageUrl': imageUrl,
     }, SetOptions(merge: true));
     isloading(false);
   }

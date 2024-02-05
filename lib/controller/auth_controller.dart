@@ -4,8 +4,8 @@ import 'package:online_bazar_seller/const/const.dart';
 
 class AuthController extends GetxController {
   //text controllers
-  var emailController1 = TextEditingController();
-  var passwordController1 = TextEditingController();
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
 
   var isLoading = false.obs;
   //login method
@@ -14,7 +14,7 @@ class AuthController extends GetxController {
 
     try {
       userCredential = await auth.signInWithEmailAndPassword(
-          email: emailController1.text, password: passwordController1.text);
+          email: emailController.text, password: passwordController.text);
     } on FirebaseAuthException catch (e) {
       VxToast.show(context, msg: e.toString());
     }

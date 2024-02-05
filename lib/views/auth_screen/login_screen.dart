@@ -47,7 +47,7 @@ class LoginScreen extends StatelessWidget {
               () => Column(
                 children: [
                   TextFormField(
-                    controller: controller.emailController1,
+                    controller: controller.emailController,
                     decoration: const InputDecoration(
                         prefixIcon: Icon(
                           Icons.email,
@@ -59,7 +59,7 @@ class LoginScreen extends StatelessWidget {
                   10.heightBox,
                   TextFormField(
                     obscureText: true,
-                    controller: controller.passwordController1,
+                    controller: controller.passwordController,
                     decoration: const InputDecoration(
                         prefixIcon: Icon(
                           Icons.lock,
@@ -93,8 +93,8 @@ class LoginScreen extends StatelessWidget {
                                 if (value != null) {
                                   VxToast.show(context,
                                       msg: "Logged in successfully");
-                                  controller.emailController1.clear();
-                                  controller.passwordController1.clear();
+                                  controller.emailController.clear();
+                                  controller.passwordController.clear();
                                   controller.isLoading(false);
                                   Get.offAll(() => const Home());
                                 } else {
