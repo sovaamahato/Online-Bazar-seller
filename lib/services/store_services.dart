@@ -7,4 +7,11 @@ class StoreServices {
         .where('id', isEqualTo: uid)
         .get();
   }
+
+  static getmessages(uid) {
+    return firestore
+        .collection(chatsCollection)
+        .where('toId', isEqualTo: uid)
+        .snapshots();
+  }
 }
