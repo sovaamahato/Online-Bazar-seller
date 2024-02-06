@@ -19,7 +19,7 @@ class MessagesScreen extends StatelessWidget {
         title: boldtext(text: "messages", color: fontGrey),
       ),
       body: StreamBuilder(
-        stream: StoreServices.getmessages(currentUser!.uid),
+        stream: StoreServices.getmessages(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
             return loadingIndicator();
@@ -38,7 +38,13 @@ class MessagesScreen extends StatelessWidget {
 
                     return ListTile(
                       onTap: () {
-                        Get.to(() => ChatScreen());
+                        Get.to(
+                          () => const ChatScreen(),
+                          arguments: [
+                            data[index]['sender_name'],
+                            data[index]['fromId']
+                          ],
+                        );
                       },
                       leading: const CircleAvatar(
                         backgroundColor: purpleColor,
