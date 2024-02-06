@@ -19,6 +19,7 @@ class ProductScreen extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: purpleColor,
+        //----ad product button----------------------------------
         onPressed: () async {
           controller.getCategories();
           controller.populateCategoryList();
@@ -69,25 +70,57 @@ class ProductScreen extends StatelessWidget {
                         width: 100,
                         fit: BoxFit.cover,
                       ),
+                      //--------------------popup menu------------------------------------
                       trailing: VxPopupMenu(
                         child: Icon(Icons.more_vert_rounded),
                         clickType: VxClickType.singleClick,
                         menuBuilder: () => Column(
                           children: List.generate(
                             popupMenuIcons.length,
-                            (index) => Padding(
+                            (i) => Padding(
                               padding: const EdgeInsets.all(12.0),
                               child: Row(
                                 children: [
                                   //ICONS
-                                  Icon(popupMenuIcons[index]),
+                                  Icon(
+                                    popupMenuIcons[i],
+                                    color: data[index]['featured_id'] ==
+                                                currentUser!.uid &&
+                                            i == 0
+                                        ? green
+                                        : darkGrey,
+                                  ),
+
                                   5.widthBox,
                                   normalText(
-                                      text: PopupMenuTitles[index],
+                                      text: data[index]['featured_id'] ==
+                                                  currentUser!.uid &&
+                                              i == 0
+                                          ? "Remove Featured"
+                                          : PopupMenuTitles[i],
                                       color: darkGrey)
                                   //
                                 ],
-                              ).onTap(() {}),
+                              ).onTap(() {
+                                switch (i) {
+                                  case 0:
+                                    if (data[index]['is_featured'] == true) {
+                                      controller.removeFeatured(data[index].id);
+                                      VxToast.show(context, msg: "Removed");
+                                    } else {
+                                      controller.addFeatured(data[index].id);
+                                      VxToast.show(context, msg: "Added");
+                                    }
+                                    break;
+                                  case 1:
+                                    break;
+                                  case 2:
+                                    controller.removeProduct(data[index].id);
+                                    VxToast.show(context,
+                                        msg: "product removed");
+                                    break;
+                                }
+                              }),
                             ),
                           ),
                         ).box.roundedSM.white.width(200).make(),

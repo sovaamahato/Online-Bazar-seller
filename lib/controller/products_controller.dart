@@ -35,6 +35,7 @@ class ProductsController extends GetxController {
     category = cat.categories;
   }
 
+//dropdown selection in add product screen
   populateCategoryList() {
     categoryList.clear();
     for (var item in category) {
@@ -42,6 +43,7 @@ class ProductsController extends GetxController {
     }
   }
 
+//dropdown selection in add product screen
   populateSubcategory(cat) {
     subcategoryList.clear();
     var data = category.where((element) => element.name == cat).toList();
@@ -50,6 +52,7 @@ class ProductsController extends GetxController {
     }
   }
 
+//to pick images from gallery--------
   pickImage(index, context) async {
     try {
       final img = await ImagePicker()
@@ -64,6 +67,7 @@ class ProductsController extends GetxController {
     }
   }
 
+//for uploading product images in add product screen
   uploadImages() async {
     pImagesLinks.clear();
     for (var item in pImagesList) {
@@ -78,6 +82,7 @@ class ProductsController extends GetxController {
     }
   }
 
+//when clicked on save button in add prduct screen
   uploadProduct(context) async {
     var store = firestore.collection(productsCollection).doc();
     await store.set({
@@ -98,5 +103,24 @@ class ProductsController extends GetxController {
     });
     islaoding(false);
     VxToast.show(context, msg: "Product added");
+  }
+
+  //(popup menu )to remove or add fetured product----
+  addFeatured(docId) async {
+    await firestore.collection(productsCollection).doc(docId).set({
+      'featured_id': currentUser!.uid,
+      'is_featured': true,
+    }, SetOptions(merge: true));
+  }
+
+  removeFeatured(docId) async {
+    await firestore.collection(productsCollection).doc(docId).set({
+      'featured_id': '',
+      'is_featured': false,
+    }, SetOptions(merge: true));
+  }
+
+  removeProduct(docId) async {
+    await firestore.collection(productsCollection).doc(docId).delete();
   }
 }
