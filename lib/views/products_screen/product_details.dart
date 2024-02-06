@@ -91,7 +91,7 @@ class ProductDetails extends StatelessWidget {
                           ),
                           Row(
                               children: List.generate(
-                            3,
+                            data['p_colors'].length,
                             (index) => VxBox()
                                 .size(30, 30)
                                 .roundedFull

@@ -39,11 +39,11 @@ class ProfileController extends GetxController {
   }
 
   // uploadProfileImage() async {
-  //   var filename = basename(profileImgPath.value);
-  //   var destination = "images/${currentUser!.uid}/$filename";
-  //   Reference ref = FirebaseStorage.instance.ref().child(destination);
-  //   await ref.putFile(File(profileImgPath.value));
-  //   profileimageLink = await ref.getDownloadURL();
+  //   // var filename = basename(profileImgPath.value);
+  //   // var destination = "images/${currentUser!.uid}/$filename";
+  //   // Reference ref = FirebaseStorage.instance.ref().child(destination);
+  //   // await ref.putFile(File(profileImgPath.value));
+  //   // profileimageLink = await ref.getDownloadURL();
   // }
 
   updateProfile({name, password, imageUrl}) async {
